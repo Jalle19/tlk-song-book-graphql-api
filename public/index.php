@@ -10,7 +10,7 @@ try {
     $routerContainer = new \Aura\Router\RouterContainer();
     $routerMap       = $routerContainer->getMap();
 
-    $routerMap->get('graphiql', '/graphql', \Jalle19\Tlk\SongBook\Http\Handlers\GraphiQLHandler::class);
+    $routerMap->get('graphiql', '/', \Jalle19\Tlk\SongBook\Http\Handlers\GraphiQLHandler::class);
     $routerMap->post('graphql', '/graphql', \Jalle19\Tlk\SongBook\Http\Handlers\GraphQLHandler::class);
 
     $matcher = $routerContainer->getMatcher();
