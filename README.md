@@ -28,7 +28,7 @@ Browse the API at http://localhost:8080/
       }
     }
   }
-  fosterlandskaSanger:category(id:1) {
+  fosterlandskaSanger: category(id: 1) {
     songs {
       edges {
         node {
