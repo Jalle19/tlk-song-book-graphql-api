@@ -1,0 +1,106 @@
+#
+# Relay
+#
+
+"A connection to a list of items."
+interface Connection {
+	"A list of edges."
+	edges: [Edge]
+	"Information to aid in pagination."
+	pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+interface Edge {
+	"A cursor for use in pagination."
+	cursor: String!
+	"The item at the end of the edge."
+	node: Node
+}
+
+"An object with an ID."
+interface Node {
+	"ID of the object."
+	id: ID!
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+	"When paginating forwards, are there more items?"
+	hasPreviousPage: Boolean!
+	"When paginating backwards, are there more items?"
+	hasNextPage: Boolean!
+	"When paginating backwards, the cursor to continue."
+	endCursor: String
+	"When paginating forwards, the cursor to continue."
+	startCursor: String
+}
+
+#
+# Schema
+#
+
+schema {
+	query: Query
+}
+
+type Query {
+	category(id: ID!): Category
+	categories(after: String, before: String, first: Int, last: Int): CategoryConnection
+	page(number: Int!): Page
+	pages(after: String, before: String, first: Int, last: Int): PageConnection
+	song(id: ID!): Song
+	songs(after: String, before: String, first: Int, last: Int): SongConnection
+}
+
+type Category implements Node {
+	id: ID!,
+	name: String!,
+	songs(after: String, before: String, first: Int, last: Int): SongConnection
+}
+
+type CategoryConnection implements Connection {
+	edges: [CategoryEdge]
+	pageInfo: PageInfo!
+}
+
+type CategoryEdge implements Edge {
+	cursor: String!
+	node: Category
+}
+
+type Page implements Node {
+	id: ID!,
+	number: Int!,
+	songs(after: String, before: String, first: Int, last: Int): SongConnection
+}
+
+type PageConnection implements Connection {
+	edges: [PageEdge],
+	pageInfo: PageInfo!
+}
+
+type PageEdge implements Edge {
+	cursor: String!,
+	node: Page
+}
+
+type Song implements Node {
+	id: ID!,
+	number: Int,
+	pageNumber: Int,
+	category: Category!,
+	name: String!,
+	notes: String,
+	text: String!
+}
+
+type SongConnection implements Connection {
+	edges: [SongEdge]
+	pageInfo: PageInfo!
+}
+
+type SongEdge implements Edge {
+	cursor: String!,
+	node: Song
+}

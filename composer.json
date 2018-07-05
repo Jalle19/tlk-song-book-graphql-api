@@ -1,0 +1,33 @@
+{
+    "name": "jalle19/tlk-song-book-graphql-api",
+    "description": "A GraphQL API for the TLK song book",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Sam Stenvall",
+            "email": "sam.stenvall@digia.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "aura/router": "^3.1",
+        "digiaonline/graphql": "dev-master",
+        "digiaonline/graphql-relay": "dev-master",
+        "doctrine/collections": "^1.5",
+        "psr/http-server-handler": "^1.0",
+        "rdlowrey/auryn": "^1.4",
+        "zendframework/zend-diactoros": "^1.8",
+        "zendframework/zend-httphandlerrunner": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jalle19\\Tlk\\SongBook\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.10.1"
+    }
+}
