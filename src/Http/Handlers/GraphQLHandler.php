@@ -60,9 +60,8 @@ class GraphQLHandler implements RequestHandlerInterface
      *
      * @throws \Digia\GraphQL\Error\InvariantException
      */
-    public function handle(
-        ServerRequestInterface $request
-    ): ResponseInterface {
+    public function handle(ServerRequestInterface $request): ResponseInterface
+    {
         $body = \json_decode($request->getBody()->getContents());
 
         if (json_last_error() !== JSON_ERROR_NONE) {
