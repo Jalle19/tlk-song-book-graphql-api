@@ -10,6 +10,7 @@
     ],
     "require": {
         "php": ">=7.1",
+        "ext-mbstring": "*",
         "aura/router": "^3.1",
         "digiaonline/graphql": "dev-master",
         "digiaonline/graphql-relay": "dev-master",
