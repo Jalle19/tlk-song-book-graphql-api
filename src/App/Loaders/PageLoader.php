@@ -18,16 +18,16 @@ class PageLoader extends AbstractLoader
     public function load(): Collection
     {
         // Filter out songs without page numbers
-        $songsWithPageNumbers = array_filter($this->resourceManager->getResourceAsArray('data/songs.php'),
+        $songsWithPageNumbers = \array_filter($this->resourceManager->getResourceAsArray('data/songs.php'),
             function (array $data) {
                 return $data['page_no'] !== null;
             });
 
-        $pageNumbers = array_unique(array_map(function (array $data) {
+        $pageNumbers = \array_unique(\array_map(function (array $data) {
             return $data['page_no'];
         }, $songsWithPageNumbers));
 
-        return new ArrayCollection(array_map(function (int $pageNumber) {
+        return new ArrayCollection(\array_map(function (int $pageNumber) {
             return new Page($pageNumber);
         }, $pageNumbers));
     }

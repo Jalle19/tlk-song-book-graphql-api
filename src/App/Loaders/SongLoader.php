@@ -18,7 +18,7 @@ class SongLoader extends AbstractLoader
      */
     public function load(): Collection
     {
-        return new ArrayCollection(array_map(function (array $data) {
+        return new ArrayCollection(\array_map(function (array $data) {
             return Song::createFromArray($data);
         }, $this->resourceManager->getResourceAsArray('data/songs.php')));
     }

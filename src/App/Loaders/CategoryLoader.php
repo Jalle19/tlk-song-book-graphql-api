@@ -18,7 +18,7 @@ class CategoryLoader extends AbstractLoader
      */
     public function load(): Collection
     {
-        return new ArrayCollection(array_map(function (array $data) {
+        return new ArrayCollection(\array_map(function (array $data) {
             return Category::createFromArray($data);
         }, $this->resourceManager->getResourceAsArray('data/categories.php')));
     }

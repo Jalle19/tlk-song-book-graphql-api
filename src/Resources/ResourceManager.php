@@ -29,7 +29,7 @@ class ResourceManager
      */
     public function getResourceAsString(string $relativePath): string
     {
-        $contents = file_get_contents($this->createAbsolutePath($relativePath));
+        $contents = \file_get_contents($this->createAbsolutePath($relativePath));
 
         if ($contents === false) {
             throw new \RuntimeException('Failed to get contents from file');
@@ -57,7 +57,7 @@ class ResourceManager
     {
         $absolutePath = $this->basePath . '/' . $relativePath;
 
-        if (!file_exists($absolutePath)) {
+        if (!\file_exists($absolutePath)) {
             throw new \RuntimeException('Resource file does not exist');
         }
 

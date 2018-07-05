@@ -62,16 +62,24 @@ class GraphQLHandler implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $result = graphql($this->schema, $this->getQuery($request));
+
+        return new JsonResponse($result);
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     *
+     * @return string
+     */
+    private function getQuery(ServerRequestInterface $request): string
+    {
         $body = \json_decode($request->getBody()->getContents());
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        if (\json_last_error() !== JSON_ERROR_NONE || !isset($body->query)) {
             throw new \InvalidArgumentException('Invalid JSON in request body');
         }
 
-        $query = $body->query ?? null;
-
-        $result = graphql($this->schema, $query);
-
-        return new JsonResponse($result);
+        return $body->query;
     }
 }
