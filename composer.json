@@ -21,6 +21,9 @@
         "zendframework/zend-diactoros": "^1.8",
         "zendframework/zend-httphandlerrunner": "^1.0"
     },
+    "require-dev": {
+        "phpstan/phpstan": "^0.10.1"
+    },
     "autoload": {
         "psr-4": {
             "Jalle19\\Tlk\\SongBook\\": "src/"
@@ -28,8 +31,5 @@
     },
     "config": {
         "sort-packages": true
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^0.10.1"
     }
 }
