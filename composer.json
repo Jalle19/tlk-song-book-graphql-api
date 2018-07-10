@@ -11,8 +11,9 @@
     "require": {
         "php": ">=7.1",
         "ext-mbstring": "*",
+        "adbario/php-dot-notation": "^2.0",
         "aura/router": "^3.1",
-        "digiaonline/graphql": "dev-master",
+        "digiaonline/graphql": "dev-master#80f82621ba633e4f444d5873bd03a29a92968437",
         "digiaonline/graphql-relay": "dev-master",
         "doctrine/collections": "^1.5",
         "psr/http-server-handler": "^1.0",
@@ -20,15 +21,27 @@
         "zendframework/zend-diactoros": "^1.8",
         "zendframework/zend-httphandlerrunner": "^1.0"
     },
+    "require-dev": {
+        "phpstan/phpstan": "^0.10.1",
+        "phpunit/phpunit": "^7.2"
+    },
     "autoload": {
         "psr-4": {
             "Jalle19\\Tlk\\SongBook\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Jalle19\\Tlk\\SongBook\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": [
+            "phpunit",
+            "phpstan analyse -l 7 src/"
+        ]
+    },
     "config": {
         "sort-packages": true
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^0.10.1"
     }
 }

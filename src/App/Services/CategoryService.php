@@ -4,7 +4,7 @@ namespace Jalle19\Tlk\SongBook\App\Services;
 
 use Doctrine\Common\Collections\Collection;
 use Jalle19\Tlk\SongBook\App\Exceptions\EntityNotFoundException;
-use Jalle19\Tlk\SongBook\App\Loaders\CategoryLoader;
+use Jalle19\Tlk\SongBook\App\Loaders\LoaderInterface;
 use Jalle19\Tlk\SongBook\App\Models\Category;
 
 /**
@@ -22,9 +22,9 @@ class CategoryService
     /**
      * CategoryService constructor.
      *
-     * @param CategoryLoader $categoryLoader
+     * @param LoaderInterface $categoryLoader
      */
-    public function __construct(CategoryLoader $categoryLoader)
+    public function __construct(LoaderInterface $categoryLoader)
     {
         $this->categories = $categoryLoader->load();
     }

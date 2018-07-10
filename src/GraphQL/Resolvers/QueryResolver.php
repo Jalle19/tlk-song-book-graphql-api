@@ -130,7 +130,22 @@ class QueryResolver extends AbstractResolver
      */
     public function resolveSongs($rootValue, array $args): ConnectionInterface
     {
-        $songs     = $this->songService->findAll();
+        // Handle search arguments
+        $dotArgs = dot($args);
+
+        if ($dotArgs->has('search.name')) {
+            $name = $dotArgs->get('search.name');
+            
+            $songs = $this->songService->findAllByName($name);
+        } else if ($dotArgs->has('search.text')) {
+            $text       = $dotArgs->get('search.text');
+            $searchMode = $dotArgs->get('search.textSearchMode');
+
+            $songs = $this->songService->findAllByText($text, $searchMode);
+        } else {
+            $songs = $this->songService->findAll();
+        }
+
         $arguments = ConnectionArguments::fromArray($args);
 
         return ArrayConnectionBuilder::fromArray($songs, $arguments);

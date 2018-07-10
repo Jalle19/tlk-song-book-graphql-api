@@ -5,6 +5,12 @@ require_once __DIR__ . '/../vendor/autoload.php';
 try {
     // Configure the injector
     $injector = new \Auryn\Injector();
+    $injector->define(\Jalle19\Tlk\SongBook\App\Services\CategoryService::class,
+        ['categoryLoader' => \Jalle19\Tlk\SongBook\App\Loaders\CategoryLoader::class]);
+    $injector->define(\Jalle19\Tlk\SongBook\App\Services\PageService::class,
+        ['pageLoader' => \Jalle19\Tlk\SongBook\App\Loaders\PageLoader::class]);
+    $injector->define(\Jalle19\Tlk\SongBook\App\Services\SongService::class,
+        ['songLoader' => \Jalle19\Tlk\SongBook\App\Loaders\SongLoader::class]);
 
     // Configure the router
     $routerContainer = new \Aura\Router\RouterContainer();

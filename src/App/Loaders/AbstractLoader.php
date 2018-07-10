@@ -2,24 +2,18 @@
 
 namespace Jalle19\Tlk\SongBook\App\Loaders;
 
-use Doctrine\Common\Collections\Collection;
 use Jalle19\Tlk\SongBook\Resources\ResourceManager;
 
 /**
  * Class AbstractLoader
  * @package Jalle19\Tlk\SongBook\App\Loaders
  */
-abstract class AbstractLoader
+abstract class AbstractLoader implements LoaderInterface
 {
     /**
      * @var ResourceManager
      */
     protected $resourceManager;
-
-    /**
-     * @return Collection
-     */
-    abstract public function load(): Collection;
 
     /**
      * CategoryLoader constructor.
@@ -30,5 +24,4 @@ abstract class AbstractLoader
     {
         $this->resourceManager = $resourceManager;
     }
-
 }
