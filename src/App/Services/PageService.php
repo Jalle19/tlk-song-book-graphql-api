@@ -4,7 +4,7 @@ namespace Jalle19\Tlk\SongBook\App\Services;
 
 use Doctrine\Common\Collections\Collection;
 use Jalle19\Tlk\SongBook\App\Exceptions\EntityNotFoundException;
-use Jalle19\Tlk\SongBook\App\Loaders\PageLoader;
+use Jalle19\Tlk\SongBook\App\Loaders\LoaderInterface;
 use Jalle19\Tlk\SongBook\App\Models\Page;
 
 /**
@@ -22,9 +22,9 @@ class PageService
     /**
      * PageService constructor.
      *
-     * @param PageLoader $pageLoader
+     * @param LoaderInterface $pageLoader
      */
-    public function __construct(PageLoader $pageLoader)
+    public function __construct(LoaderInterface $pageLoader)
     {
         $this->pages = $pageLoader->load();
     }

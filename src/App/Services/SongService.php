@@ -4,7 +4,7 @@ namespace Jalle19\Tlk\SongBook\App\Services;
 
 use Doctrine\Common\Collections\Collection;
 use Jalle19\Tlk\SongBook\App\Exceptions\EntityNotFoundException;
-use Jalle19\Tlk\SongBook\App\Loaders\SongLoader;
+use Jalle19\Tlk\SongBook\App\Loaders\LoaderInterface;
 use Jalle19\Tlk\SongBook\App\Models\Song;
 
 /**
@@ -25,9 +25,9 @@ class SongService
     /**
      * SongService constructor.
      *
-     * @param SongLoader $songLoader
+     * @param LoaderInterface $songLoader
      */
-    public function __construct(SongLoader $songLoader)
+    public function __construct(LoaderInterface $songLoader)
     {
         $this->songs = $songLoader->load();
     }
