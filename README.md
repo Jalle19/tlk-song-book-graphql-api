@@ -16,11 +16,13 @@ A basic GraphQL API that exposes the TLK song book. You can use the API at https
  
 Browse the API at http://localhost:8080/
 
-## Example query
+## Example queries
+
+Retrieve a list of all categories:
 
 ```graphql
 {
-  categories: categories {
+  categories {
     edges {
       node {
         id
@@ -28,7 +30,14 @@ Browse the API at http://localhost:8080/
       }
     }
   }
-  fosterlandskaSanger: category(id: 1) {
+}
+```
+
+Retrieve a list of all songs in a specific category:
+
+```graphql
+{
+  category(id: 1) {
     songs {
       edges {
         node {
@@ -42,3 +51,22 @@ Browse the API at http://localhost:8080/
   }
 }
 ```
+
+Find all songs containing the word "drick":
+
+```graphql
+{
+  songs(search: {text: "helvete"}) {
+    edges {
+      node {
+        id
+        name
+      }
+    }
+  }
+}
+```
+
+## License
+
+See the LICENSE file
