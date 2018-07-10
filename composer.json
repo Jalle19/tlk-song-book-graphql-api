@@ -11,8 +11,9 @@
     "require": {
         "php": ">=7.1",
         "ext-mbstring": "*",
+        "adbario/php-dot-notation": "^2.0",
         "aura/router": "^3.1",
-        "digiaonline/graphql": "dev-master",
+        "digiaonline/graphql": "dev-master#80f82621ba633e4f444d5873bd03a29a92968437",
         "digiaonline/graphql-relay": "dev-master",
         "doctrine/collections": "^1.5",
         "psr/http-server-handler": "^1.0",

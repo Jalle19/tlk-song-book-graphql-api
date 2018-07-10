@@ -50,7 +50,7 @@ type Query {
 	page(number: Int!): Page
 	pages(after: String, before: String, first: Int, last: Int): PageConnection
 	song(id: ID!): Song
-	songs(after: String, before: String, first: Int, last: Int): SongConnection
+	songs(search: SongSearchInput, after: String, before: String, first: Int, last: Int): SongConnection
 }
 
 type Category implements Node {
@@ -103,4 +103,15 @@ type SongConnection implements Connection {
 type SongEdge implements Edge {
 	cursor: String!,
 	node: Song
+}
+
+input SongSearchInput {
+	name: String,
+	text: String,
+	textSearchMode: TEXT_SEARCH_MODE = ALL_PHRASES
+}
+
+enum TEXT_SEARCH_MODE {
+	ANY_PHRASE,
+	ALL_PHRASES
 }

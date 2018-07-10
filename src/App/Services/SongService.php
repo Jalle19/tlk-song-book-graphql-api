@@ -14,6 +14,9 @@ use Jalle19\Tlk\SongBook\App\Models\Song;
 class SongService
 {
 
+    private const TEXT_SEARCH_MODE_ANY_PHRASE  = 'ANY_PHRASE';
+    private const TEXT_SEARCH_MODE_ALL_PHRASES = 'ALL_PHRASES';
+
     /**
      * @var Collection
      */
@@ -91,5 +94,55 @@ class SongService
     public function findAll(): array
     {
         return $this->songs->toArray();
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return array
+     */
+    public function findAllByName(string $name): array
+    {
+        return $this->songs->filter(function (Song $song) use ($name) {
+            return $song->getName() === $name;
+        })->toArray();
+    }
+
+    /**
+     * @param string $text
+     * @param string $mode
+     *
+     * @return array
+     */
+    public function findAllByText(string $text, string $mode): array
+    {
+        return $this->songs->filter(function (Song $song) use ($text, $mode) {
+            $phrases = \explode(' ', $text);
+
+            switch ($mode) {
+                case self::TEXT_SEARCH_MODE_ANY_PHRASE:
+                    foreach ($phrases as $phrase) {
+                        if (\strpos($song->getText(), $phrase) !== false) {
+                            return $song;
+                        }
+                    }
+                    break;
+                case self::TEXT_SEARCH_MODE_ALL_PHRASES:
+                    $allPhrasesMatch = true;
+
+                    foreach ($phrases as $phrase) {
+                        if (\strpos($song->getText(), $phrase) === false) {
+                            $allPhrasesMatch = false;
+                        }
+                    }
+
+                    return $allPhrasesMatch;
+                    break;
+                default:
+                    throw new \InvalidArgumentException('Unknown text search mode');
+            }
+
+            return $song->getName() === $text;
+        })->toArray();
     }
 }
