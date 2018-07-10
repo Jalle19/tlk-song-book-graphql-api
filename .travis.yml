@@ -9,4 +9,4 @@ before_script:
   - composer install
 
 script:
-  - vendor/bin/phpstan analyse -l 7 src/
+  - composer test

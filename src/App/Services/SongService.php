@@ -14,8 +14,8 @@ use Jalle19\Tlk\SongBook\App\Models\Song;
 class SongService
 {
 
-    private const TEXT_SEARCH_MODE_ANY_PHRASE  = 'ANY_PHRASE';
-    private const TEXT_SEARCH_MODE_ALL_PHRASES = 'ALL_PHRASES';
+    public const TEXT_SEARCH_MODE_ANY_PHRASE  = 'ANY_PHRASE';
+    public const TEXT_SEARCH_MODE_ALL_PHRASES = 'ALL_PHRASES';
 
     /**
      * @var Collection
@@ -126,7 +126,8 @@ class SongService
                             return $song;
                         }
                     }
-                    break;
+
+                    return false;
                 case self::TEXT_SEARCH_MODE_ALL_PHRASES:
                     $allPhrasesMatch = true;
 
@@ -137,12 +138,9 @@ class SongService
                     }
 
                     return $allPhrasesMatch;
-                    break;
                 default:
                     throw new \InvalidArgumentException('Unknown text search mode');
             }
-
-            return $song->getName() === $text;
         })->toArray();
     }
 }
